@@ -66,17 +66,45 @@
                                     <outlet property="delegate" destination="S9V-6W-YLR" id="UZK-cY-B6k"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH8-fg-BMb">
+                                <rect key="frame" x="154" y="423" width="106" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibf-nU-5yl">
+                                <rect key="frame" x="183.66666666666666" y="460" width="47" height="30"/>
+                                <state key="normal" title="Reload"/>
+                                <connections>
+                                    <action selector="reloadButtonTapped:" destination="S9V-6W-YLR" eventType="touchUpInside" id="9if-vM-kcq"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="huZ-Sa-nUm">
+                                <rect key="frame" x="197" y="465" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="U3o-Qg-RHi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="uUJ-HD-rFk" firstAttribute="top" secondItem="U3o-Qg-RHi" secondAttribute="top" id="0ib-VJ-br0"/>
+                            <constraint firstItem="UH8-fg-BMb" firstAttribute="centerX" secondItem="U3o-Qg-RHi" secondAttribute="centerX" id="Hac-0Y-yYf"/>
                             <constraint firstItem="uUJ-HD-rFk" firstAttribute="bottom" secondItem="U3o-Qg-RHi" secondAttribute="bottom" id="Hgd-pZ-oHr"/>
+                            <constraint firstItem="huZ-Sa-nUm" firstAttribute="centerY" secondItem="U3o-Qg-RHi" secondAttribute="centerY" id="JYw-eF-0eE"/>
+                            <constraint firstItem="huZ-Sa-nUm" firstAttribute="centerX" secondItem="U3o-Qg-RHi" secondAttribute="centerX" id="Yhh-j4-Tkd"/>
+                            <constraint firstItem="ibf-nU-5yl" firstAttribute="centerX" secondItem="U3o-Qg-RHi" secondAttribute="centerX" id="cNu-KT-7ui"/>
+                            <constraint firstItem="ibf-nU-5yl" firstAttribute="top" secondItem="UH8-fg-BMb" secondAttribute="bottom" constant="16" id="gVc-Mx-OaG"/>
                             <constraint firstItem="uUJ-HD-rFk" firstAttribute="trailing" secondItem="U3o-Qg-RHi" secondAttribute="trailing" id="gpj-Py-NnA"/>
+                            <constraint firstItem="ibf-nU-5yl" firstAttribute="centerY" secondItem="U3o-Qg-RHi" secondAttribute="centerY" id="oay-3l-k3X"/>
                             <constraint firstItem="uUJ-HD-rFk" firstAttribute="leading" secondItem="U3o-Qg-RHi" secondAttribute="leading" id="uXN-zi-JuD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vJY-2j-vdG"/>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="huZ-Sa-nUm" id="T4G-Xh-kzf"/>
+                        <outlet property="errorLabel" destination="UH8-fg-BMb" id="EH8-b9-5CR"/>
+                        <outlet property="reloadButton" destination="ibf-nU-5yl" id="UhU-Fw-Nmo"/>
+                        <outlet property="tableView" destination="uUJ-HD-rFk" id="3rc-TR-kZY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TFK-19-tjD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -206,6 +234,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

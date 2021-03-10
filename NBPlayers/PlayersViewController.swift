@@ -9,47 +9,57 @@ import UIKit
 
 // MARK: - PlayersVC
 class PlayersViewController: UIViewController {
-	var teams: [Team] = []
-	var players: [Player] = []
+	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+	@IBOutlet weak var errorLabel: UILabel!
+	@IBOutlet weak var reloadButton: UIButton!
 	
-    override func viewDidLoad() {
+	var players: [Player] = []
+	let apiClient = ApiClienrImpl()
+	override func viewDidLoad() {
         super.viewDidLoad()
 		navigationItem.title = "Players"
 		navigationController?.navigationBar.prefersLargeTitles = true
-		
-		// Init/Load Data
-		teams.append(contentsOf: [
-			Team(name: "Lakers", city: "Los Angeles", conference: "West"),
-			Team(name: "Heat", city: "Miami", conference: "East")
-		])
-		
-		players.append(contentsOf: [
-			Player(
-				firstName: "LeBron",
-				lastName: "James",
-				position: "SF",
-				height: "6'8''",
-				team: getTeam(by: "Lakers")
-			),
-			Player(
-				firstName: "Anthony",
-				lastName: "Davis",
-				position: "PF",
-				height: "7'0''",
-				team: getTeam(by: "Lakers")
-			),
-			Player(
-				firstName: "Jimmy",
-				lastName: "Butler",
-				position: "SG",
-				height: "6'6''",
-				team: getTeam(by: "Heat")
-			)
-		])
+		reloadData()
     }
 	
-	func getTeam(by name: String) -> Team? {
-		return teams.first {$0.name == name}
+	@IBAction func reloadButtonTapped(_ sender: Any) {
+		reloadData()
+	}
+	
+	func reloadData() {
+		showLoading()
+		apiClient.getPlayers(completion: {result in
+			DispatchQueue.main.async {
+				switch result {
+				case .success(let players):
+					self.players = players
+					self.showData()
+				case .failure:
+					self.players = []
+					self.showError()
+				}
+				self.tableView.reloadData()
+			}
+		})
+	}
+	
+	func showLoading() {
+		activityIndicatorView.startAnimating()
+		errorLabel.isHidden = true
+		reloadButton.isHidden = true
+	}
+	
+	func showData() {
+		activityIndicatorView.stopAnimating()
+		errorLabel.isHidden = true
+		reloadButton.isHidden = true
+	}
+	
+	func showError() {
+		activityIndicatorView.stopAnimating()
+		errorLabel.isHidden = false
+		reloadButton.isHidden = false
 	}
 }
 

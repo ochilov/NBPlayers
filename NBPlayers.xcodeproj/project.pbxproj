@@ -17,6 +17,7 @@
 		B21BE96225F80BAA0050C006 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21BE96125F80BAA0050C006 /* Player.swift */; };
 		B21BE96525F815B80050C006 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21BE96425F815B80050C006 /* TeamViewController.swift */; };
 		B21BE96825F8166B0050C006 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21BE96725F8166B0050C006 /* Team.swift */; };
+		B28CA8BE25F9298100488C1B /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28CA8BD25F9298100488C1B /* ApiClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		B21BE96125F80BAA0050C006 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		B21BE96425F815B80050C006 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		B21BE96725F8166B0050C006 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		B28CA8BD25F9298100488C1B /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				B21BE96425F815B80050C006 /* TeamViewController.swift */,
 				B21BE96125F80BAA0050C006 /* Player.swift */,
 				B21BE96725F8166B0050C006 /* Team.swift */,
+				B28CA8BD25F9298100488C1B /* ApiClient.swift */,
 				B21BE94925F7E6B60050C006 /* Main.storyboard */,
 				B21BE94C25F7E6B80050C006 /* Assets.xcassets */,
 				B21BE94E25F7E6B80050C006 /* LaunchScreen.storyboard */,
@@ -152,6 +155,7 @@
 				B21BE94425F7E6B60050C006 /* AppDelegate.swift in Sources */,
 				B21BE96525F815B80050C006 /* TeamViewController.swift in Sources */,
 				B21BE96825F8166B0050C006 /* Team.swift in Sources */,
+				B28CA8BE25F9298100488C1B /* ApiClient.swift in Sources */,
 				B21BE94625F7E6B60050C006 /* SceneDelegate.swift in Sources */,
 				B21BE95E25F8097A0050C006 /* PlayerDetailsViewController.swift in Sources */,
 				B21BE96225F80BAA0050C006 /* Player.swift in Sources */,
