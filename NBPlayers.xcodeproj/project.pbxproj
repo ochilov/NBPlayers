@@ -18,6 +18,9 @@
 		B21BE96525F815B80050C006 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21BE96425F815B80050C006 /* TeamViewController.swift */; };
 		B21BE96825F8166B0050C006 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21BE96725F8166B0050C006 /* Team.swift */; };
 		B28CA8BE25F9298100488C1B /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28CA8BD25F9298100488C1B /* ApiClient.swift */; };
+		B28CA8C125F965D100488C1B /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28CA8C025F965D100488C1B /* GamesViewController.swift */; };
+		B28CA8C425F9667300488C1B /* GameDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28CA8C325F9667300488C1B /* GameDetailsViewController.swift */; };
+		B28CA8C825F96D8900488C1B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28CA8C725F96D8900488C1B /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		B21BE96425F815B80050C006 /* TeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
 		B21BE96725F8166B0050C006 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		B28CA8BD25F9298100488C1B /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		B28CA8C025F965D100488C1B /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
+		B28CA8C325F9667300488C1B /* GameDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
+		B28CA8C725F96D8900488C1B /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +77,11 @@
 				B21BE95925F7E7600050C006 /* PlayersViewController.swift */,
 				B21BE95D25F8097A0050C006 /* PlayerDetailsViewController.swift */,
 				B21BE96425F815B80050C006 /* TeamViewController.swift */,
+				B28CA8C025F965D100488C1B /* GamesViewController.swift */,
+				B28CA8C325F9667300488C1B /* GameDetailsViewController.swift */,
 				B21BE96125F80BAA0050C006 /* Player.swift */,
 				B21BE96725F8166B0050C006 /* Team.swift */,
+				B28CA8C725F96D8900488C1B /* Game.swift */,
 				B28CA8BD25F9298100488C1B /* ApiClient.swift */,
 				B21BE94925F7E6B60050C006 /* Main.storyboard */,
 				B21BE94C25F7E6B80050C006 /* Assets.xcassets */,
@@ -156,8 +165,11 @@
 				B21BE96525F815B80050C006 /* TeamViewController.swift in Sources */,
 				B21BE96825F8166B0050C006 /* Team.swift in Sources */,
 				B28CA8BE25F9298100488C1B /* ApiClient.swift in Sources */,
+				B28CA8C125F965D100488C1B /* GamesViewController.swift in Sources */,
 				B21BE94625F7E6B60050C006 /* SceneDelegate.swift in Sources */,
+				B28CA8C825F96D8900488C1B /* Game.swift in Sources */,
 				B21BE95E25F8097A0050C006 /* PlayerDetailsViewController.swift in Sources */,
+				B28CA8C425F9667300488C1B /* GameDetailsViewController.swift in Sources */,
 				B21BE96225F80BAA0050C006 /* Player.swift in Sources */,
 				B21BE95A25F7E7600050C006 /* PlayersViewController.swift in Sources */,
 			);
@@ -306,7 +318,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NBPlayers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -314,6 +327,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = none.NBPlayers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -324,7 +338,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NBPlayers/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -332,6 +347,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = none.NBPlayers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
