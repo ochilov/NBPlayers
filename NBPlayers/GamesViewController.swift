@@ -23,7 +23,7 @@ class GamesViewController: UIViewController {
 		navigationItem.title = "Games"
 		navigationController?.navigationBar.prefersLargeTitles = true
 		
-		tableView.rowHeight = 80
+		tableView.rowHeight = 100
 		reloadData()
 	}
 	
@@ -99,33 +99,36 @@ extension GamesViewController: UITableViewDelegate {
 
 // MARK: - Game Table cell
 class GameTableCell: UITableViewCell {
-	@IBOutlet weak var homeTeamLabel: UILabel!
-	@IBOutlet weak var visitorTeamLabel: UILabel!
+	@IBOutlet weak var statusLabel: UILabel!
 	@IBOutlet weak var startDateLabel: UILabel!
-	@IBOutlet weak var startTimeLabel: UILabel!
+	@IBOutlet weak var homeTeamLabel: UILabel!
+	@IBOutlet weak var homeTeamScore: UILabel!
+	@IBOutlet weak var homeTeamLogo: UIImageView!
+	@IBOutlet weak var visitorTeamLabel: UILabel!
+	@IBOutlet weak var visitorTeamScore: UILabel!
+	@IBOutlet weak var visitorTeamLogo: UIImageView!
 	
 	func setGame(_ game: Game) {
-		homeTeamLabel.text = game.homeTeam.fullName
-		visitorTeamLabel.text = game.visitorTeam.fullName
-		startDateLabel.text = self.humanReadableDate(of: game.date)
-		startTimeLabel.text = self.humanReadableTime(of: game.date)
+		statusLabel.text = game.status
+		startDateLabel.text = game.date.humanReadableDate()
+		
+		homeTeamLabel.text = game.homeTeam.name
+		homeTeamScore.text = "\(game.homeTeamScore ?? 0)"
+		homeTeamLogo.image = getLogo(of: game.homeTeam)
+		
+		visitorTeamLabel.text = game.visitorTeam.name
+		visitorTeamScore.text = "\(game.visitorTeamScore ?? 0)"
+		visitorTeamLogo.image = getLogo(of: game.visitorTeam)
+		
+		showWinnerScore(game)
 	}
 	
-	func humanReadableDate(of date: Date) -> String {
-		let currentDate = Date()
-		if date.hasSame(.day, as: currentDate) {
-			return "Today"
-		} else {
-			let format = DateFormatter()
-			format.dateFormat = "E, d MMM YY"
-			return format.string(from: date)
+	func showWinnerScore(_ game: Game) {
+		if (game.homeTeamScore ?? 0 > game.visitorTeamScore ?? 0) {
+			homeTeamScore.text = homeTeamScore.text! + " ◂"
+		} else if (game.homeTeamScore ?? 0 < game.visitorTeamScore ?? 0) {
+			visitorTeamScore.text = "▸ " + visitorTeamScore.text!
 		}
-	}
-	
-	func humanReadableTime(of date: Date) -> String {
-		let format = DateFormatter()
-		format.dateFormat = "HH : mm"
-		return format.string(from: date)
 	}
 }
 
@@ -144,5 +147,16 @@ extension Date {
 
 	func hasSame(_ component: Calendar.Component, as date: Date) -> Bool {
 		distance(from: date, only: component) == 0
+	}
+	
+	func humanReadableDate() -> String {
+		let currentDate = Date()
+		if self.hasSame(.day, as: currentDate) {
+			return "Today"
+		} else {
+			let format = DateFormatter()
+			format.dateFormat = "E, d MMM YY"
+			return format.string(from: self)
+		}
 	}
 }

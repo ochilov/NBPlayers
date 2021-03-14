@@ -8,13 +8,16 @@
 import UIKit
 
 class GameDetailsViewController: UIViewController {
-	@IBOutlet weak var seasonLabel: UILabel!
-	@IBOutlet weak var periodLabel: UILabel!
-	@IBOutlet weak var timeLabel: UILabel!
 	@IBOutlet weak var homeTeamButton: UIButton!
+	@IBOutlet weak var homeTeamLogo: UIImageView!
 	@IBOutlet weak var homeTeamScoreLabel: UILabel!
 	@IBOutlet weak var visitorTeamButton: UIButton!
+	@IBOutlet weak var visitorTeamLogo: UIImageView!
 	@IBOutlet weak var visitorTeamScoreLabel: UILabel!
+	@IBOutlet weak var statusLabel: UILabel!
+	@IBOutlet weak var seasonLabel: UILabel!
+	@IBOutlet weak var periodLabel: UILabel!
+	@IBOutlet weak var dateLabel: UILabel!
 	
 	var game: Game?
 	
@@ -22,23 +25,26 @@ class GameDetailsViewController: UIViewController {
 		super.viewDidLoad()
 		navigationItem.title = "Game"
 		navigationController?.navigationBar.prefersLargeTitles = true
-		
-		seasonLabel.text = humanReadable(of: game?.season, or: "") + " " + humanReadable(of: game?.status, or: "")
-		periodLabel.text = humanReadable(of: game?.period, or: "-")
 
-		timeLabel.text = game?.time
-		homeTeamButton.setTitle(game?.homeTeam.name, for: .normal)
+		homeTeamButton   .setTitle(game?.homeTeam.name, for: .normal)
 		visitorTeamButton.setTitle(game?.visitorTeam.name, for: .normal)
 		
-		homeTeamScoreLabel.text = humanReadable(of: game?.homeTeamScore, or: "-")
+		homeTeamScoreLabel   .text = humanReadable(of: game?.homeTeamScore, or: "-")
 		visitorTeamScoreLabel.text = humanReadable(of: game?.visitorTeamScore, or: "-")
+		showWinnerScore(game)
 		
-		let winnerTeam = game?.winnerTeam
-		homeTeamScoreLabel   .textColor = winnerTeam == game?.homeTeam    ? UIColor.label : UIColor.red
-		visitorTeamScoreLabel.textColor = winnerTeam == game?.visitorTeam ? UIColor.label : UIColor.red
+		homeTeamLogo   .image = getLogo(of: game?.homeTeam)
+		visitorTeamLogo.image = getLogo(of: game?.visitorTeam)
+		doLogoTappable(homeTeamLogo)
+		doLogoTappable(visitorTeamLogo)
+		
+		statusLabel.text = game?.status
+		seasonLabel.text = humanReadable(of: game?.season, or: "-")
+		periodLabel.text = humanReadable(of: game?.period, or: "-")
+		dateLabel.text = game?.date.humanReadableDate()
 	}
 	
-	@IBAction func teamDetailsTapped(_ sender: UIButton) {
+	@IBAction func teamDetailsTapped(_ sender: UIView) {
 		guard let team = (sender.tag == 1 ? game?.visitorTeam : game?.homeTeam) else {
 			return
 		}
@@ -48,6 +54,26 @@ class GameDetailsViewController: UIViewController {
 		
 		vc.team = team
 		navigationController?.pushViewController(vc, animated: true)
+	}
+	
+	func doLogoTappable(_ logo:UIImageView) {
+		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(logoTapped(tapGestureRecognizer:)))
+		logo.isUserInteractionEnabled = true
+		logo.addGestureRecognizer(tapGestureRecognizer)
+	}
+	
+	@objc func logoTapped(tapGestureRecognizer: UITapGestureRecognizer)
+	{
+		let tappedLogo = tapGestureRecognizer.view as! UIImageView
+		self.teamDetailsTapped(tappedLogo)
+	}
+	
+	func showWinnerScore(_ game: Game?) {
+		if (game?.homeTeamScore ?? 0 > game?.visitorTeamScore ?? 0) {
+			homeTeamScoreLabel.text = homeTeamScoreLabel.text! + " ◂"
+		} else if (game?.homeTeamScore ?? 0 < game?.visitorTeamScore ?? 0) {
+			visitorTeamScoreLabel.text = "▸ " + visitorTeamScoreLabel.text!
+		}
 	}
 	
 	func humanReadable(of number: Int?, or defValue: String) -> String {

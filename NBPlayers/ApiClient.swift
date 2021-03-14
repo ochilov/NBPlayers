@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum ApiError: Error {
 	case noData
@@ -72,4 +73,12 @@ class ApiClienrImpl: ApiClient {
 		
 		dataTask.resume()
 	}
+}
+
+func getLogo(of team: Team?) -> UIImage? {
+	var logo = UIImage(named: "teamLogo_\(team?.id ?? 0)")
+	if logo == nil {
+		logo = UIImage(named:"teamLogo_none")
+	}
+	return logo
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class TeamViewController: UIViewController {
 
+	@IBOutlet weak var teamLogo: UIImageView!
 	@IBOutlet weak var cityLabel: UILabel!
 	@IBOutlet weak var conferenceLabel: UILabel!
 	var team: Team?
@@ -18,6 +19,7 @@ class TeamViewController: UIViewController {
 		navigationItem.title = team?.name
 		navigationController?.navigationBar.prefersLargeTitles = true
 		
+		teamLogo.image = getLogo(of: team)
 		cityLabel.text = team?.city
 		conferenceLabel.text = team?.conference
     }

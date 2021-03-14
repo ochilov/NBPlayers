@@ -20,6 +20,7 @@ class PlayersViewController: UIViewController {
         super.viewDidLoad()
 		navigationItem.title = "Players"
 		navigationController?.navigationBar.prefersLargeTitles = true
+		tableView.rowHeight = 60
 		reloadData()
     }
 	
@@ -71,11 +72,10 @@ extension PlayersViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: "PlayersTableCell", for: indexPath) as! PlayersTableCell
 		let player = players[indexPath.row]
 		
-		cell.textLabel?.text = player.fullName
-		cell.detailTextLabel?.text = player.teamName
+		cell.setPlayer(player)
 		return cell
 	}
 }
@@ -90,5 +90,19 @@ extension PlayersViewController: UITableViewDelegate {
 		vc.player = players[indexPath.row]
 		navigationController?.pushViewController(vc, animated: true)
 		tableView.deselectRow(at: indexPath, animated: true)
+	}
+}
+
+
+// MARK: - Game Table cell
+class PlayersTableCell: UITableViewCell {
+	@IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var secondaryInfoLabel: UILabel!
+	@IBOutlet weak var teamLogo: UIImageView!
+	
+	func setPlayer(_ player: Player) {
+		nameLabel.text = player.fullName
+		secondaryInfoLabel.text = player.teamName + " | " + player.position
+		teamLogo.image = getLogo(of: player.team)
 	}
 }
